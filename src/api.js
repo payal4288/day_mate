@@ -3,7 +3,8 @@
  * All components use these helpers instead of raw fetch calls.
  */
 
-const BASE = 'http://localhost:3001/api';
+const API_ORIGIN = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const BASE = `${API_ORIGIN.replace(/\/+$/, '')}/api`;
 
 async function request(path, options = {}) {
   const res = await fetch(`${BASE}${path}`, {
